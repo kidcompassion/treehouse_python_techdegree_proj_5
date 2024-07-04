@@ -1,16 +1,18 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+import datetime
 
 app = Flask('__name__')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///projects.db'
 db = SQLAlchemy(app)
 
 class Project(db.Model):
-    project_id = db.Column(db.Integer, primary_key=True)
-    project_title = db.Column('project_title', db.String)
-    project_description = db.Column('project_description', db.String)
-    project_instructions = db.Column('project_instructions', db.String)
-    project_lessons = db.Column('project_lessons', db.String)
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column('title', db.String)
+    date = db.Column('date', db.DateTime)
+    skills = db.Column('skills', db.String)
+    description = db.Column('description', db.Text)
+    url = db.Column('url', db.String)
 
 
     def __repr__(self):
