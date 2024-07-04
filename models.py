@@ -1,20 +1,21 @@
-from sqlalchemy import create_engine, Column, Integer, String, Date
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
-engine = create_engine('sqlite:///projects.db', echo=False)
-Session = sessionmaker(bind=engine)
-session = Session()
-Base = declarative_base
+app = Flask('__name__')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///projects.db'
+db = SQLAlchemy(app)
 
-class Project(Base):
-    __tablename__ = 'projects'
-    project_id = Column(Integer, primary_key=True)
-    project_title = Column('project_title', String)
-    project_description = Column('project_description', String)
-    project_instructions = Column('project_instructions', String)
-    project_lessons = Column('project_lessons', String)
+class Project(db.Model):
+    project_id = db.Column(db.Integer, primary_key=True)
+    project_title = db.Column('project_title', db.String)
+    project_description = db.Column('project_description', db.String)
+    project_instructions = db.Column('project_instructions', db.String)
+    project_lessons = db.Column('project_lessons', db.String)
 
 
     def __repr__(self):
-        return f'Project Title: {self.project_title} | Project Description {self.project_description} | Project Instructions: {self.project_instructions} | Project Lessons: {self.project_lessons})>'
+        return f''' <Project (
+        Project Title: {self.project_title} | 
+        Project Description {self.project_description} | 
+        Project Instructions: {self.project_instructions} | 
+        Project Lessons: {self.project_lessons})>'''
