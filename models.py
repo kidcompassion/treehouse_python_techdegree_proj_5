@@ -17,7 +17,8 @@ class Project(db.Model):
 
     def __repr__(self):
         return f''' <Project (
-        Project Title: {self.project_title} | 
-        Project Description {self.project_description} | 
-        Project Instructions: {self.project_instructions} | 
-        Project Lessons: {self.project_lessons})>'''
+        Project Title: {self.title} | 
+        Project Date: {self.date} | 
+        Project Skills: {self.skills} | 
+        Project Description {self.description} | 
+        Project url: {self.url} | )>'''

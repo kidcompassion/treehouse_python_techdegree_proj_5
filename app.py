@@ -24,12 +24,11 @@ def add_new_project():
     return render_template('projectform.html')
 
 
-    return render_template('projectform.html')
-
-
 @app.route('/project/<id>')
 def project_by_id(id):
-    return id
+    print(id)
+    project = Project.query.get_or_404(id)
+    return render_template('detail.html', project = project)
 
 
 @app.route('/project/<id>/edit')
