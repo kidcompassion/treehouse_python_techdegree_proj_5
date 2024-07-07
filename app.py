@@ -12,11 +12,13 @@ def add_project():
     if request.form:
 
         # Format incoming date string as datetime object
-        split_date = request.form['date'].split("-")
+        date_split = request.form['date'].split("-")
+        
+        
 
         new_project = Project(
             title = request.form['title'],
-            date = datetime.date(year=int(split_date[0]), month=int(split_date[1]), day = 1),
+            date = datetime.date(year=int(date_split[0]), month=int(date_split[1]), day = 1),
             skills = request.form['skills'],
             description = request.form['desc'],
             url = request.form['url']
@@ -45,14 +47,36 @@ def project(id):
     return render_template('detail.html', project = project)
 
 
+
+
+
 @app.route('/project/<id>/edit', methods = ['GET', 'POST'])
 def edit_project(id):
+    print("fires")
     project = Project.query.get(id)
+    starting_project_date = project.date
+    project.date = project.date.strftime("%Y-%m")
+    
+    # if project.date has changed
+    # convert it to a datetime obj
+    
+
     if request.form:
+        print("fires inside request")
         project.title = request.form['title']
-        project.date = request.form['date']
+        
+        if project.date == request.form['date']:
+            project.date = starting_project_date
+        else:
+            print("fires in else")
+            split_date = request.form['date'].split("-")
+            
+            project.date = datetime.date(year=int(split_date[0]), month=int(split_date[1]), day = 1)
+            
+        
+        
         project.skills = request.form['skills']
-        project.description = request.form['description']
+        project.description = request.form['desc']
         project.url = request.form['url']
 
         db.session.add(project)
