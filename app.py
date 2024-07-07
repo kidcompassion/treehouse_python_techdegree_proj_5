@@ -4,7 +4,8 @@ from models import db, Project, app, datetime
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    projects = Project.query.all()
+    return render_template('index.html',projects=projects)
 
 
 @app.route('/project/new', methods=['GET', 'POST'])
