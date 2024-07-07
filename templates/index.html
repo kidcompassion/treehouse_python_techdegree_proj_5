@@ -1,60 +1,59 @@
 {% extends 'layout.html' %}
-    {% block content %}
-        <section class="header">
-            <h1>Python Developer</h1>
-            <p>Student in Treehouse's Techdegree</p>
-            <img src="https://cdn.pixabay.com/photo/2023/12/09/10/09/woman-8438999_1280.png" alt="Cartoon of woman with coffee cup">
-        </section>
-        <section id="about">
-            <h2>About Me</h2>
-            <p>
-                I'm a support engineer with a passion for helping people. 
-            </p>
-            <div id="triangle1"></div>
-            <div id="triangle2"></div>
-        </section>
-        <section id="skills">
-            <i class="fas fa-laptop-code"></i>
-            <h2>Skills</h2>
-            <ul>
-                <li>Python</li>
-                <li>Flask</li>
-                <li>SQLAlchemy</li>
-                <li>GitHub</li>
-                <li>Visual Studio Code</li>
-            </ul>
-        </section>
-        <section id="projects">
-            <div id="triangle3"></div>
-            <i class="fas fa-file-code"></i>
-            <h2>Projects</h2>
-            <div id="project-list">
-                {% for project in projects %}
-                    <div id="project{{project.id}}" class="a-project">
-                        <h3><a href="{{url_for('project', id=project.id)}}">{{ project.title}}</a></h3>
-                        <a href="" class="github-btn">
-                            <i class="fab fa-github"></i>
-                            View on GitHub
-                        </a>
-                        <p>
-                        {{project.description}}
-                        </p>
-                    </div>
-                    {% endfor %}
-          
-            </div>
-            <div id="triangle4"></div>
-        </section>
-        <section id="contact">
-            <i class="fas fa-paper-plane"></i>
-            <h2>Contact Me</h2>
-            <p>
-                Reach out with any questions.
-            </p>
-            <p>
-                <i class="fas fa-envelope"></i>
-                my_email@email.com
-            </p>
-        </section>
-      
+{% block content %}
+    <section class="header">
+        <h1>Python Developer</h1>
+        <p>Student in Treehouse's Techdegree</p>
+        <img src="https://cdn.pixabay.com/photo/2023/12/09/10/09/woman-8438999_1280.png" alt="Cartoon of woman with coffee cup">
+    </section>
+    <section id="about">
+        <h2>About Me</h2>
+        <p>
+            I'm a support engineer with a passion for helping people. 
+        </p>
+        <div id="triangle1"></div>
+        <div id="triangle2"></div>
+    </section>
+    <section id="skills">
+        <i class="fas fa-laptop-code"></i>
+        <h2>Skills</h2>
+        <ul>
+            <li>Python</li>
+            <li>Flask</li>
+            <li>SQLAlchemy</li>
+            <li>GitHub</li>
+            <li>Visual Studio Code</li>
+        </ul>
+    </section>
+    <section id="projects">
+        <div id="triangle3"></div>
+        <i class="fas fa-file-code"></i>
+        <h2>Projects</h2>
+        <div id="project-list">
+            {% for project in projects %}
+                <div id="project{{project.id}}" class="a-project">
+                    <h3><a href="{{url_for('project', id=project.id)}}">{{ project.title}}</a></h3>
+                    <a href="{{project.url}}" class="github-btn">
+                        <i class="fab fa-github"></i>
+                        View on GitHub
+                    </a>
+                    <p>
+                    {{project.description}}
+                    </p>
+                </div>
+                {% endfor %}
+        
+        </div>
+        <div id="triangle4"></div>
+    </section>
+    <section id="contact">
+        <i class="fas fa-paper-plane"></i>
+        <h2>Contact Me</h2>
+        <p>
+            Reach out with any questions.
+        </p>
+        <p>
+            <i class="fas fa-envelope"></i>
+            my_email@email.com
+        </p>
+    </section>
 {%endblock%}
