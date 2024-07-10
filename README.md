@@ -4,6 +4,7 @@ This is a simple portfolio website built in Flask, including a form to allow upd
 
 To run:
 * Clone repo
+* To install dependencies, run `pip install -r requirements.txt`
 * From root, run python3 app.py
 
 Things learned:
