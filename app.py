@@ -4,6 +4,7 @@ from models import db, Project, app, datetime
 
 @app.route('/')
 def index():
+    # Get all projects
     projects = Project.query.all()
     return render_template('index.html',projects=projects)
 
@@ -28,7 +29,6 @@ def add_project():
     
         db.session.add(new_project)
         db.session.commit()
-        print(request.form)
         return redirect(url_for('index'))
     return render_template('projectform.html', projects=projects)
 
@@ -38,6 +38,7 @@ def project(id):
     # Query for all projects so the dropdown nav will work on this route
     projects = Project.query.all()
     project = Project.query.get_or_404(id)
+
     # format date for the details page
     project.date = project.date.strftime("%b %Y")
 
@@ -51,8 +52,10 @@ def project(id):
 def edit_project(id):
     projects = Project.query.all()
     project = Project.query.get(id)
+
     # incoming date from DB is an object.
     starting_project_date = project.date
+    
     # Convert incoming date to correct format for value of datepicker
     project.date = project.date.strftime("%Y-%m")
 
