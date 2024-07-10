@@ -10,5 +10,4 @@ htmlcov/
 .tox/
 docs/_build/
 env/
-instance/
 .DS_Store
