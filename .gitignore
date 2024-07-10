@@ -3,11 +3,12 @@
 .vscode/
 .venv*/
 venv*/
+env*/
 __pycache__/
 dist/
 .coverage*
 htmlcov/
 .tox/
 docs/_build/
-env/
+env/    
 .DS_Store
